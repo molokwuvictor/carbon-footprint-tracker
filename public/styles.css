@@ -113,6 +113,12 @@ footer {
     border-top: 1px solid #ddd;
 }
 
+.copyright {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: #888;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
