@@ -113,6 +113,26 @@ footer {
     border-top: 1px solid #ddd;
 }
 
+footer p {
+    margin: 0.5rem 0;
+}
+
+footer .credits {
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+}
+
+footer .credits a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer .credits a:hover {
+    color: #27ae60;
+    text-decoration: underline;
+}
+
 .copyright {
     margin-top: 0.5rem;
     font-size: 0.9rem;

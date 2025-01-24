@@ -105,12 +105,89 @@ h1 {
     display: block;
 }
 
+/* Credits Footer Styles */
+.credits-footer {
+    margin-top: 2rem;
+    padding: 1.5rem 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.credits-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.credit-link {
+    color: #4CAF50;
+    text-decoration: none;
+    position: relative;
+    padding: 0 2px;
+    transition: all 0.3s ease;
+}
+
+.credit-link::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -2px;
+    left: 0;
+    background-color: #4CAF50;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.credit-link:hover {
+    color: #81C784;
+}
+
+.credit-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
 footer {
     text-align: center;
     color: #666;
     margin-top: 2rem;
     padding-top: 1rem;
     border-top: 1px solid #ddd;
+}
+
+footer p {
+    margin: 0.5rem 0;
+}
+
+footer .credits {
+    margin-top: 0.5rem;
+    font-size: 0.9em;
+}
+
+footer .credits a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer .credits a:hover {
+    color: #27ae60;
+    text-decoration: underline;
+}
+
+footer .api-credit {
+    font-size: 0.85em;
+}
+
+footer .copyright {
+    font-size: 0.85em;
+    color: #888;
 }
 
 @media (max-width: 768px) {
