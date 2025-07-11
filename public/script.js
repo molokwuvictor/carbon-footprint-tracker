@@ -1,10 +1,44 @@
-// Initialize map
-let map = L.map('map').setView([0, 0], 2);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+// Initialize ArcGIS map and view
+let view;
+let map;
+let userGraphic;
 
-let userMarker = null;
+// Load ArcGIS modules
+require([
+    "esri/Map",
+    "esri/views/MapView",
+    "esri/Graphic",
+    "esri/symbols/SimpleMarkerSymbol",
+    "esri/geometry/Point"
+], function(Map, MapView, Graphic, SimpleMarkerSymbol, Point) {
+    // Create the map
+    map = new Map({
+        basemap: "streets-navigation-vector"
+    });
+
+    // Create the view
+    view = new MapView({
+        container: "map",
+        map: map,
+        center: [0, 0],
+        zoom: 2
+    });
+
+    // Create a symbol for the user location
+    const userSymbol = new SimpleMarkerSymbol({
+        color: [0, 119, 255],
+        outline: {
+            color: [255, 255, 255],
+            width: 2
+        },
+        size: 12
+    });
+
+    // Initialize user location graphic
+    userGraphic = new Graphic({
+        symbol: userSymbol
+    });
+});
 
 // Fallback values when APIs fail
 const FALLBACK_VALUES = {
@@ -40,12 +74,30 @@ getLocationButton.addEventListener('click', () => {
 async function handleSuccess(position) {
     const { latitude, longitude } = position.coords;
     
-    // Update map
-    if (userMarker) {
-        map.removeLayer(userMarker);
-    }
-    userMarker = L.marker([latitude, longitude]).addTo(map);
-    map.setView([latitude, longitude], 10);
+    // Update map with ArcGIS API
+    require(["esri/geometry/Point"], function(Point) {
+        // Create point geometry
+        const point = new Point({
+            longitude: longitude,
+            latitude: latitude
+        });
+        
+        // Update user marker position
+        if (userGraphic) {
+            userGraphic.geometry = point;
+            
+            // Add graphic to the view if it's not already added
+            if (!view.graphics.includes(userGraphic)) {
+                view.graphics.add(userGraphic);
+            }
+        }
+        
+        // Center the view on the user's location
+        view.goTo({
+            target: point,
+            zoom: 10
+        });
+    });
     
     // Display location info
     locationInfo.innerHTML = `📍 Location: ${latitude.toFixed(4)}°, ${longitude.toFixed(4)}°`;
