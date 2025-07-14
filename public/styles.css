@@ -64,6 +64,75 @@ h1 {
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
+.cluster-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    background: #e7f3ff;
+    border-radius: 8px;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.cluster-control-group {
+    display: flex;
+    align-items: center;
+    margin: 0 0.5rem;
+    min-width: 180px;
+}
+
+.cluster-control-group label {
+    font-size: 1rem;
+    color: #333;
+    margin-right: 0.5rem;
+    white-space: nowrap;
+}
+
+.cluster-control-group input[type="range"] {
+    margin: 0 1rem 0 0.5rem;
+    accent-color: var(--primary-color);
+    height: 2px;
+    flex: 1;
+}
+
+.cluster-control-group span {
+    font-weight: bold;
+    color: var(--secondary-color);
+    margin-left: 0.25rem;
+}
+
+.layer-toggles {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 0.5rem 0;
+}
+
+.generate-btn {
+    background-color: #0053a6;
+}
+
+.generate-btn:hover {
+    background-color: #004080;
+}
+
+@media (max-width: 600px) {
+    .cluster-controls {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+        padding: 0.5rem 0.5rem;
+    }
+    .cluster-control-group {
+        width: 100%;
+        margin: 0.25rem 0;
+    }
+}
+
 .map-container {
     height: 400px;
     border-radius: 10px;

@@ -21,7 +21,29 @@
                 <div id="locationInfo" class="info-box"></div>
             </div>
 
+            <!-- Cluster Controls -->
+            <div class="cluster-controls">
+                <div class="cluster-control-group">
+                    <label for="clusterCount">Number of Hexagons: <span id="clusterCountValue">7</span></label>
+                    <input type="range" id="clusterCount" min="2" max="20" value="7">
+                </div>
+                <div class="cluster-control-group">
+                    <label for="clusterRadius">Radius (miles): <span id="clusterRadiusValue">50</span></label>
+                    <input type="range" id="clusterRadius" min="50" max="500" step="10" value="50">
+                </div>
+                <div class="cluster-control-group">
+                    <label for="gridSpacing">Grid Spacing (miles): <span id="gridSpacingValue">10</span></label>
+                    <input type="range" id="gridSpacing" min="1" max="50" step="1" value="10">
+                </div>
+                <div class="layer-toggles">
+                    <label><input type="checkbox" id="toggleClusters" checked> Show Hexagons</label>
+                    <label><input type="checkbox" id="toggleGrid" checked> Show Grid Points</label>
+                </div>
+                <button id="generateClustersBtn" class="primary-button generate-btn">Generate Hexagon Map</button>
+            </div>
+
             <div id="map" class="map-container"></div>
+            <div id="legendContainer"></div>
 
             <div class="data-section">
                 <div class="card" id="weatherData">
